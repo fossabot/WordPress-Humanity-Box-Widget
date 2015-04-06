@@ -1,10 +1,13 @@
 WordPress Humanity Box Widget
 ============
-I put this widget together to make it easier to add the Humanity Box script to any WordPress powered site.
+I put this widget together to make it eaiser to add the Humanity Box script to any WordPress powered site. After you
+activate the plugin, it will add a widget to your site which will display ads from GiveForward.com in your prefered sidebar. 
 
-WordPress Widget Code: http://www.wpbeginner.com/wp-tutorials/how-to-create-a-custom-wordpress-widget/
+Just add the widget to your sidebar, and <b>that's it!</b>
 
 Humanity Box Script: https://github.com/nicksergeant/humanitybox
+
+Website: http://humanitybox.com/
 
 Credit to <b>Nick</b> for the rest of the content below. 
 
@@ -19,8 +22,9 @@ What does it do?
 
 Humanity Box works similarly to how paid ad networks work (such as
 [The Deck](http://decknetwork.net/), [Carbon Ads](http://carbonads.net/),
-[BSA One](http://bsaone.com/), etc). You install an ad code onto your website,
-and it delivers advertisements on each page load.
+[BSA One](http://bsaone.com/), etc). You install & activate the plugin, 
+and it delivers advertisements from Giveforward.com in your site's sidebar 
+on each page load.
 
 The difference is that ads in the Humanity Box network are funding campaigns
 for people are who sick and experiencing financial hardship as a result. The

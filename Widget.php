@@ -2,7 +2,7 @@
 /*
 Plugin Name: Humanity Box Widget
 Plugin URI: https://Marc.CryLab.co/HumanitBoxPlugin
-Description: A simple plugin that adds a simple widget
+Description: Humanity Box is a free ad network designed to increase exposure to individuals raising funds for personal medical needs.
 Version: 1.0
 Author: Marc
 Author URI: https://Marc.CryLab.co

@@ -1,6 +1,6 @@
 WordPress Humanity Box Widget
 ============
-I put this widget together to make it eaiser to add the Humanity Box script to any WordPress powered website.
+I put this widget together to make it eaiser to add the Humanity Box script to any WordPress powered site.
 
 WordPress Widget Code: http://www.wpbeginner.com/wp-tutorials/how-to-create-a-custom-wordpress-widget/
 

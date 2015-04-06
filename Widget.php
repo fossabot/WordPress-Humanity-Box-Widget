@@ -15,44 +15,32 @@ class wpb_widget extends WP_Widget {
 function __construct() {
 parent::__construct(
 
-
 // Base ID of your widget
 'wpb_widget', 
 
-
 // Widget name will appear in UI
 __('Humanity Box Widget', 'wpb_widget_domain'), 
-
 
 // Widget description
 array( 'description' => __( 'A ad designed to increase exposure to individuals raising funds for personal medical needs.', 'wpb_widget_domain' ), ) 
 );
 }
 
-
 // Creating widget front-end
 // This is where the action happens
 public function widget( $args, $instance ) {
 $title = apply_filters( 'widget_title', $instance['title'] );
-
-
 
 // before and after widget arguments are defined by themes
 echo $args['before_widget'];
 if ( ! empty( $title ) )
 echo $args['before_title'] . $title . $args['after_title'];
 
-
-
-
 // This is where you run the code and display the output
 echo __( '<div id="humanitybox"></div>
 <script type="text/javascript" src="https://d21djfthp4qopy.cloudfront.net/humanitybox.js"></script>', 'wpb_widget_domain' );
 echo $args['after_widget'];
 }
-		
-
-
 
 // Widget Backend 
 public function form( $instance ) {
@@ -63,10 +51,6 @@ else {
 $title = __( 'New title', 'wpb_widget_domain' );
 }
 
-
-
-
-
 // Widget admin form
 ?>
 <p>
@@ -75,9 +59,6 @@ $title = __( 'New title', 'wpb_widget_domain' );
 </p>
 <?php 
 }
-	
-
-
 
 // Updating widget replacing old instances with new
 public function update( $new_instance, $old_instance ) {
@@ -88,8 +69,6 @@ return $instance;
 } 
 
 // Class wpb_widget ends here
-
-
 
 
 // Register and load the widget

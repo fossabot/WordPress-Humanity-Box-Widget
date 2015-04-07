@@ -5,7 +5,7 @@ activate the plugin, it will add a widget to your site which will display ads fr
 
 Just add the widget to your sidebar, and <b>that's it!</b>
 
-Humanity Box Script: https://github.com/nicksergeant/humanitybox
+Humanity Box Script by Nick Sergeant: https://github.com/nicksergeant/humanitybox
 
 Website: http://humanitybox.com/
 

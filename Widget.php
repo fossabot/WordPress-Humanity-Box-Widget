@@ -9,70 +9,86 @@ Author URI: https://Marc.CryLab.co
 License: GPL2
 */
 
-// Creating the widget 
-class wpb_widget extends WP_Widget {
+// Block direct requests
+if ( !defined('ABSPATH') )
+	die('-1');
+	
+	
+add_action( 'widgets_init', function(){
+     register_widget( 'Humanity_Box' );
+});	
 
-function __construct() {
-parent::__construct(
+/**
+ * Adds Humanity_Box widget.
+ */
+class Humanity_Box extends WP_Widget {
 
-// Base ID of your widget
-'wpb_widget', 
+	/**
+	 * Register widget with WordPress.
+	 */
+	function __construct() {
+		parent::__construct(
+			'Humanity_Box', // Base ID
+			__('Humanity_Box', 'text_domain'), // Name
+			array( 'description' => __( 'An ad box designed to increase exposure to individuals raising funds for personal medical needs', 'text_domain' ), ) // Args
+		);
+	}
 
-// Widget name will appear in UI
-__('Humanity Box Widget', 'wpb_widget_domain'), 
+	/**
+	 * Front-end display of widget.
+	 *
+	 * @see WP_Widget::widget()
+	 *
+	 * @param array $args     Widget arguments.
+	 * @param array $instance Saved values from database.
+	 */
+	public function widget( $args, $instance ) {
+	
+     	echo $args['before_widget'];
+		if ( ! empty( $instance['title'] ) ) {
+			echo $args['before_title'] . apply_filters( 'widget_title', $instance['title'] ). $args['after_title'];
+		}
+		echo __( '<script type="text/javascript" src="https://d21djfthp4qopy.cloudfront.net/humanitybox.js "></script>', 'text_domain' );
+		echo $args['after_widget'];
+	}
 
-// Widget description
-array( 'description' => __( 'A ad designed to increase exposure to individuals raising funds for personal medical needs.', 'wpb_widget_domain' ), ) 
-);
-}
+	/**
+	 * Back-end widget form.
+	 *
+	 * @see WP_Widget::form()
+	 *
+	 * @param array $instance Previously saved values from database.
+	 */
+	public function form( $instance ) {
+		if ( isset( $instance[ 'title' ] ) ) {
+			$title = $instance[ 'title' ];
+		}
+		else {
+			$title = __( 'Humanity Box Title', 'text_domain' );
+		}
+		?>
+		<p>
+			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:' ); ?></label> 
+			<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>">
+		</p>
+		<?php 
+	}
 
-// Creating widget front-end
-// This is where the action happens
-public function widget( $args, $instance ) {
-$title = apply_filters( 'widget_title', $instance['title'] );
+	/**
+	 * Sanitize widget form values as they are saved.
+	 *
+	 * @see WP_Widget::update()
+	 *
+	 * @param array $new_instance Values just sent to be saved.
+	 * @param array $old_instance Previously saved values from database.
+	 *
+	 * @return array Updated safe values to be saved.
+	 */
+	public function update( $new_instance, $old_instance ) {
+		$instance = array();
+		$instance['title'] = ( ! empty( $new_instance['title'] ) ) ? strip_tags( $new_instance['title'] ) : '';
 
-// before and after widget arguments are defined by themes
-echo $args['before_widget'];
-if ( ! empty( $title ) )
-echo $args['before_title'] . $title . $args['after_title'];
+		return $instance;
+	}
 
-// This is where you run the code and display the output
-echo __( '<div id="humanitybox"></div>
-<script type="text/javascript" src="https://d21djfthp4qopy.cloudfront.net/humanitybox.js"></script>', 'wpb_widget_domain' );
-echo $args['after_widget'];
-}
-
-// Widget Backend 
-public function form( $instance ) {
-if ( isset( $instance[ 'title' ] ) ) {
-$title = $instance[ 'title' ];
-}
-else {
-$title = __( 'New title', 'wpb_widget_domain' );
-}
-
-// Widget admin form
-?>
-<p>
-<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:' ); ?></label> 
-<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>" />
-</p>
-<?php 
-}
-
-// Updating widget replacing old instances with new
-public function update( $new_instance, $old_instance ) {
-$instance = array();
-$instance['title'] = ( ! empty( $new_instance['title'] ) ) ? strip_tags( $new_instance['title'] ) : '';
-return $instance;
-}
-} 
-
-// Class wpb_widget ends here
-
-
-// Register and load the widget
-function wpb_load_widget() {
-	register_widget( 'wpb_widget' );
-}
-add_action( 'widgets_init', 'wpb_load_widget' );
+} // class Humanity_Box

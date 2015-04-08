@@ -9,6 +9,9 @@ Author URI: https://Marc.CryLab.co
 License: GPL2
 */
 
+ //add_action('wp_enqueue_scripts', 'load_humanity_box_scripts'); //Loads on frontend.
+
+
 // Block direct requests
 if ( !defined('ABSPATH') )
 	die('-1');
@@ -17,23 +20,21 @@ if ( !defined('ABSPATH') )
 add_action( 'widgets_init', function(){
      register_widget( 'Humanity_Box' );
 });	
-
 /**
  * Adds Humanity_Box widget.
  */
 class Humanity_Box extends WP_Widget {
-
 	/**
 	 * Register widget with WordPress.
 	 */
 	function __construct() {
 		parent::__construct(
 			'Humanity_Box', // Base ID
-			__('Humanity_Box', 'text_domain'), // Name
+			__('Humanity Box', 'text_domain'), // Name
 			array( 'description' => __( 'An ad box designed to increase exposure to individuals raising funds for personal medical needs', 'text_domain' ), ) // Args
 		);
-	}
-
+  
+    }
 	/**
 	 * Front-end display of widget.
 	 *
@@ -42,16 +43,27 @@ class Humanity_Box extends WP_Widget {
 	 * @param array $args     Widget arguments.
 	 * @param array $instance Saved values from database.
 	 */
-	public function widget( $args, $instance ) {
-	
-     	echo $args['before_widget'];
-		if ( ! empty( $instance['title'] ) ) {
-			echo $args['before_title'] . apply_filters( 'widget_title', $instance['title'] ). $args['after_title'];
-		}
-		echo __( '<script type="text/javascript" src="https://d21djfthp4qopy.cloudfront.net/humanitybox.js "></script>', 'text_domain' );
-		echo $args['after_widget'];
-	}
+       
+    
+        public function widget( $args, $instance ) {
 
+            
+        echo $args['before_widget'];
+        if ( ! empty( $instance['title'] ) ) {
+            echo $args['before_title'] . apply_filters( 'widget_title', $instance['title'] ). $args['after_title'];
+            }
+     
+          wp_enqueue_script( 'external-script', 'https://d21djfthp4qopy.cloudfront.net/humanitybox.js', array( 'jquery' ), '1.0.0', true );
+          
+
+            
+            
+         //echo __( 'Hello, World!', 'text_domain' );
+         echo $args['after_widget'];
+           
+            
+ 
+    }
 	/**
 	 * Back-end widget form.
 	 *
@@ -64,7 +76,7 @@ class Humanity_Box extends WP_Widget {
 			$title = $instance[ 'title' ];
 		}
 		else {
-			$title = __( 'Humanity Box Title', 'text_domain' );
+			$title = __( 'Humanity Box', 'text_domain' );
 		}
 		?>
 		<p>
@@ -73,7 +85,6 @@ class Humanity_Box extends WP_Widget {
 		</p>
 		<?php 
 	}
-
 	/**
 	 * Sanitize widget form values as they are saved.
 	 *
@@ -87,8 +98,10 @@ class Humanity_Box extends WP_Widget {
 	public function update( $new_instance, $old_instance ) {
 		$instance = array();
 		$instance['title'] = ( ! empty( $new_instance['title'] ) ) ? strip_tags( $new_instance['title'] ) : '';
-
 		return $instance;
 	}
+}
 
-} // class Humanity_Box
+// class Humanity_Box
+
+?>

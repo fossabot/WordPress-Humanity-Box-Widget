@@ -9,25 +9,19 @@ Author URI: https://Marc.CryLab.co
 License: GPL2
 */
 
- //add_action('wp_enqueue_scripts', 'load_humanity_box_scripts'); //Loads on frontend.
 function nick_humanity_box_script() {
     
-        wp_register_script( 'external-script', 'https://d21djfthp4qopy.cloudfront.net/humanitybox.js', array( 'jquery' ), '1.0.0', true);
+        wp_enqueue_script('external-script', 'https://d21djfthp4qopy.cloudfront.net/humanitybox.js', array( 'jquery' ), '0.1', true);
         
         }
-        
-        add_action('init', 'nick_humanity_box_script');
-
 
 // Block direct requests
 if ( !defined('ABSPATH') )
 	die('-1');
-
 	
 add_action( 'widgets_init', function(){
      register_widget( 'Humanity_Box' );
 });	
-
 /**
  * Adds Humanity_Box widget.
  */
@@ -54,7 +48,6 @@ class Humanity_Box extends WP_Widget {
        
     
         public function widget( $args, $instance ) {
-
             
             
         echo $args['before_widget'];
@@ -63,10 +56,9 @@ class Humanity_Box extends WP_Widget {
             }
      
           
-          
-         echo __( wp_enqueue_script( 'external-script'), 'text/javascript' );
-
-            
+        add_action('wp_enqueue_scripts', 'nick_humanity_box_script');
+         
+         //echo __( wp_enqueue_script( 'external-script'), 'text/javascript' );   
          //echo __( 'Hello, World!', 'text_domain' );
          echo $args['after_widget'];
            
@@ -110,7 +102,5 @@ class Humanity_Box extends WP_Widget {
 		return $instance;
 	}
 }
-
 // class Humanity_Box
-
 ?>

@@ -1,3 +1,5 @@
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FMarcWoodyard%2FWordPress-Humanity-Box-Widget.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2FMarcWoodyard%2FWordPress-Humanity-Box-Widget?ref=badge_shield)
+
 WordPress Humanity Box Widget
 ============
 I put this widget together to make it eaiser to add the Humanity Box script to any WordPress powered site. After you
@@ -59,3 +61,7 @@ The ad code is delivered via [Amazon CloudFront](http://aws.amazon.com/cloudfron
 
 We display 10 campaigns per 24-hour period, after which we rotate in 10 new
 campaigns.
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FMarcWoodyard%2FWordPress-Humanity-Box-Widget.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2FMarcWoodyard%2FWordPress-Humanity-Box-Widget?ref=badge_large)
